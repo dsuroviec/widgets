@@ -10,15 +10,20 @@ const Accordion = ({ items }) => {
   const renderedItems = items.map((item, index) => {
     const active = index === activeIndex ? "active" : "";
     return (
-      <div>
-        <div className={`title ${active}`} onClick={() => onTitleClick(index)}>
-          <i className="dropdown icon"></i>
-          {item.title}
+      <React.Fragment key={item.title}>
+        <div>
+          <div
+            className={`title ${active}`}
+            onClick={() => onTitleClick(index)}
+          >
+            <i className="dropdown icon"></i>
+            {item.title}
+          </div>
+          <div className={`content ${active}`}>
+            <p>{item.content}</p>
+          </div>
         </div>
-        <div className={`content ${active}`}>
-          <p>{item.content}</p>
-        </div>
-      </div>
+      </React.Fragment>
     );
   });
   return <div className="ui styled accordion">{renderedItems}</div>;
